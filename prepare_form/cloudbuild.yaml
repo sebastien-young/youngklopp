@@ -4,5 +4,5 @@ steps:
   args: [-c, 'pip install -r requirements.txt']
   dir: 'prepare_form'
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['functions', 'deploy', 'guest', 'youngklopp-guest-build', '--runtime', 'python310', '--entry-point', 'guest']
+  args: ['functions', 'deploy', 'guest', '--trigger-http', '--runtime', 'python310']
   dir: 'prepare_form'
