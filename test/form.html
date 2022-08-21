@@ -111,7 +111,7 @@
 			</div>
 		</div>
 		<br>
-		<button id="submit" type="submit" class="input-button" formaction="https://api.youngklopp.com/guest">Submit</button>
+		<button id="submit" type="submit" class="input-button" formaction="http://localhost:8080">Submit</button>
 	</form>
 </body>
 <script>
@@ -127,7 +127,7 @@ function handleSubmit(event) {
 	const msg = JSON.stringify(raw);
 	var url = "https://script.googleapis.com/v1/scripts/AKfycbxFjYr-r1hxmpPnXlgXzGDDcjJ3ctftBkp_A9SF2sFjRnoYV5tzWUEE4zeRoiv2ZzfUeA:run";
 }
-document.getElementById("myForm").addEventListener("submit", handleSubmit);
+//document.getElementById("myForm").addEventListener("submit", handleSubmit);
 document.getElementById("submit").onclick = function() { this.disabled = true; }
 </script>
 
