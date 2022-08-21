@@ -1,7 +1,7 @@
 steps:
 - name: 'docker.io/library/python:3.10'
   entrypoint: /bin/sh
-  args: [-c, 'pip install -r requirements.txt && pytest']
+  args: [-c, 'pip install -r requirements.txt']
   dir: 'prepare_form'
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['functions', 'deploy', 'guest', 'youngklopp-guest-build', '--runtime', 'python310', '--entry-point', 'guest']
