@@ -14,4 +14,4 @@ def guest (request):
     elif 'localhost' in req_base:
         return 'Local'
     req_data = request.get_data()
-    return 'OK'
+    return req_base
