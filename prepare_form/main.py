@@ -69,7 +69,7 @@ def _api_build_row (values):
 
 _api_request = {
     'appendCells': {
-        'fields': 'userEnteredValue',
+        'fields': '*',
         'rows': [],
         'sheetId': _yk_sheet
         }
