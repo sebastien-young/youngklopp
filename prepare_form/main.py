@@ -95,7 +95,7 @@ def _api_build_body (requests):
 def _api_submit (workbook, body):
     service = build ('sheets', 'v4')
     collection = service.spreadsheets()
-    response = collection.batchUpdate (workbook, body)
+    response = collection.batchUpdate (spreadsheetId=workbook, body=body)
     service.close()
     return response
 
