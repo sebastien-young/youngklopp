@@ -1,6 +1,6 @@
 import functions_framework
 
-_yk_api = 'api.youngklopp.com'
+_yk_domain = 'youngklopp'
 
 @functions_framework.http
 def guest (request):
@@ -9,8 +9,8 @@ def guest (request):
         print (req_form)
         return 'Error'
     req_base = request.base_url
-    if _yk_api in req_base:
-        return 'API'
+    if _yk_domain in req_base:
+        return 'Hosted'
     elif 'localhost' in req_base:
         return 'Local'
     req_data = request.get_data()
