@@ -49,7 +49,6 @@ def _api_build_value (string):
     value = deepcopy (_api_value)
     value['userEnteredValue']['stringValue'] = string
     return value
-    #return string
 
 def _yk_form_values (form):
     data = []
@@ -70,7 +69,6 @@ def _api_build_row (values):
     row = deepcopy (_api_row)
     for value in values:
         row['values'].append(value)
-    #row['values'].append(values)
     return row
 
 _api_request = {
@@ -102,7 +100,6 @@ def _api_submit (workbook, body):
     service = build ('sheets', 'v4')
     collection = service.spreadsheets()
     request = collection.batchUpdate (spreadsheetId=workbook, body=body)
-    #request = collection.values().append(spreadsheetId=workbook, range=_yk_sheet+'!A1:D100', valueInputOption='USER_ENTERED', body=body)
     response = request.execute ()
     service.close()
     return response
@@ -120,7 +117,6 @@ def submit (form, debug=False):
     row = _api_build_row (values)
     request = _api_build_request ([row])
     body = _api_build_body ([request])
-    #body = row
     if not debug:
         response = _api_submit (_yk_workbook, body)
         response = success_page ()
