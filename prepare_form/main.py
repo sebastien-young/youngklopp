@@ -33,9 +33,9 @@ def _yk_compile_address (form):
 _yk_data = [
     (lambda f : date.today().strftime('%m/%d/%Y %H:%M:%S')),
     (lambda f : f['email']),
-    (lambda f : f['full_name'] or ''),
-    (lambda f : _yk_compile_address(f) or ''),
-    (lambda f : f['phone'] or ''),
+    (lambda f : f['full_name']),
+    (lambda f : _yk_compile_address(f)),
+    (lambda f : f['phone']),
     ]
 
 _api_value = {
@@ -56,7 +56,7 @@ def _yk_form_values (form):
         try:
             string = function (form)
         except:
-            string = ''
+            string = ' '
         value = _api_build_value (string)
         data.append (value)
     return data
