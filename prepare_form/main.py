@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime
 from copy import deepcopy
 import functions_framework
 from googleapiclient.discovery import build
@@ -31,7 +31,7 @@ def _yk_compile_address (form):
     return address
 
 _yk_data = [
-    (lambda f : date.today().strftime('%m/%d/%Y %H:%M:%S')),
+    (lambda f : datetime.now().strftime('%m/%d/%Y %H:%M:%S')),
     (lambda f : f['email']),
     (lambda f : f['full_name']),
     (lambda f : _yk_compile_address(f)),
