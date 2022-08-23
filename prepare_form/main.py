@@ -121,8 +121,8 @@ def submit (form, debug=False):
     if not debug:
         response = _api_submit (_yk_workbook, body)
     else:
-        print (body)
-    return success_page()
+        response = body
+    return response ## success_page()
 
 @functions_framework.http
 def guest (request):
