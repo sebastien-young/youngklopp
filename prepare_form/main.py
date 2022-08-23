@@ -1,3 +1,4 @@
+import sys
 from datetime import datetime
 from copy import deepcopy
 import functions_framework
@@ -55,11 +56,9 @@ def _yk_form_values (form):
     for function in _yk_data:
         try:
             string = function (form)
-        except BadRequestKeyError as error:
-            string = ' '
-            print (error)
         except:
-            string = 'Bad data' + str(form)
+            string = str(form)
+            print (sys.exc_info()[0])
         value = _api_build_value (string)
         data.append (value)
     return data
