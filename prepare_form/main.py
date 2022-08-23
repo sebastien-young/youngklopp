@@ -57,8 +57,7 @@ def _yk_form_values (form):
         try:
             string = function (form)
         except:
-            string = str(form)
-            print (sys.exc_info()[0])
+            string = ''
         value = _api_build_value (string)
         data.append (value)
     return data
@@ -137,4 +136,4 @@ def guest (request):
         response = submit (req_form)
     elif 'localhost' in req_base:
         response = submit (req_form, True)
-    return str(request.get_json())
+    return response
