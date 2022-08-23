@@ -123,6 +123,7 @@ def submit (form, debug=False):
     #body = row
     if not debug:
         response = _api_submit (_yk_workbook, body)
+        response = success_page ()
     else:
         response = body
     return response
