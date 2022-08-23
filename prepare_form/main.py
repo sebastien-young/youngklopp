@@ -55,8 +55,11 @@ def _yk_form_values (form):
     for function in _yk_data:
         try:
             string = function (form)
+        except BadRequestKeyError as error:
+            string = ' '
+            print (error)
         except:
-            string = 'Bad data' + form
+            string = 'Bad data' + str(form)
         value = _api_build_value (string)
         data.append (value)
     return data
