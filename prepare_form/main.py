@@ -31,7 +31,7 @@ def _yk_compile_address (form):
     return address
 
 _yk_data = [
-    (lambda f : date.today().strftime('%m/%d/%Y %H:%M:%S'),
+    (lambda f : date.today().strftime('%m/%d/%Y %H:%M:%S')),
     (lambda f : f['email']),
     (lambda f : f['full_name'] or ''),
     (lambda f : _yk_compile_address(f) or ''),
