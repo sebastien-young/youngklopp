@@ -56,7 +56,7 @@ def _yk_form_values (form):
         try:
             string = function (form)
         except:
-            string = ' '
+            string = 'Bad data' + form
         value = _api_build_value (string)
         data.append (value)
     return data
