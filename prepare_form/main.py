@@ -137,4 +137,4 @@ def guest (request):
         response = submit (req_form)
     elif 'localhost' in req_base:
         response = submit (req_form, True)
-    return request.data
+    return str(request.data)
