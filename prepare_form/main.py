@@ -115,8 +115,9 @@ def submit (form, debug=False):
         return error_page()
     values = _yk_form_values (form)
     row = _api_build_row (values)
-    request = _api_build_request ([row])
-    body = _api_build_body ([request])
+    #request = _api_build_request ([row])
+    #body = _api_build_body ([request])
+    body = row
     if not debug:
         response = _api_submit (_yk_workbook, body)
     else:
