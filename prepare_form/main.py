@@ -12,11 +12,11 @@ _yk_sheet_id = 644811057
 _yk_sheet = 'Young Klopp Interest Form'
 
 _yk_address = [
-    (lambda f : '' if f['address'] is None else f['address']+newline),
-    (lambda f : '' if f['line2'] is None else f['line2']+newline),
-    (lambda f : '' if f['city'] is None else f['city']+', '),
-    (lambda f : '' if f['state'] is None else f['state']+' '),
-    (lambda f : '' if f['zip'] is None else f['zip'])
+    (lambda f : f['address-line1']+newline),
+    (lambda f : f['address-line2']+newline),
+    (lambda f : f['city']+', '),
+    (lambda f : f['state']+' '),
+    (lambda f : f['zip'])
     ]
 
 def _yk_compile_address (form):

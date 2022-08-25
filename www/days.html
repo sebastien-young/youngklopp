@@ -1,20 +1,14 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-		<style type="text/css">
-			body {
-				font-family: 'Roboto'; font-size: 24px; color: #4e858d; background-color: transparent; text-align: center; width: inherit; height: inherit; 
-			}
-		</style>
-	</head>
-	<body>
-		<script>
-			const today=new Date();
-			const goal = new Date("06/03/2023");
-			const day = 1000*60*60*24;
-			const days = Math.ceil((goal.getTime()-today.getTime())/day);
-			document.write(days+" more days!");
-		</script>
-	</body>
-</html>
+<html><head><link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'><style type="text/css">
+	body {
+		font-family: 'Roboto';
+		font-size: 30px;
+		font-size: 50vh;
+		color: #FFFFFF;
+		text-align: center;
+		background-color: transparent;
+		width: inherit;
+		height: inherit;
+		overflow: hidden;
+	}
+</style></head><body><script>document.write(Math.ceil(((new Date("06/03/2023")).getTime()-(new Date()).getTime())/(1000*60*60*24))+" more days!")</script></body></html>
