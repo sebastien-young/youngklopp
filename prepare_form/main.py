@@ -14,9 +14,9 @@ _yk_sheet = 'Young Klopp Interest Form'
 _yk_address = [
     (lambda f : f['address-line1']+newline),
     (lambda f : f['address-line2']+newline),
-    (lambda f : f['city']+', '),
-    (lambda f : f['state']+' '),
-    (lambda f : f['zip'])
+    (lambda f : f['address-level2']+', '),
+    (lambda f : f['address-level1']+' '),
+    (lambda f : f['postal-code'])
     ]
 
 def _yk_compile_address (form):
