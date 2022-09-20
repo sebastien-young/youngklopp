@@ -3,6 +3,7 @@ from datetime import datetime
 from copy import deepcopy
 import functions_framework
 from googleapiclient.discovery import build
+from flask import redirect
 
 newline = "\n"
 
@@ -108,7 +109,7 @@ def error_page():
     return 'Error'
 
 def success_page():
-    return 'Submitted!'
+    return redirect("https://cdn.youngklopp.com/test/thanks.html", code=301)
 
 def submit (form, debug=False):
     if form is None:
@@ -121,7 +122,7 @@ def submit (form, debug=False):
         response = _api_submit (_yk_workbook, body)
         response = success_page ()
     else:
-        response = body
+        response = success_page ()
     return response
 
 @functions_framework.http
