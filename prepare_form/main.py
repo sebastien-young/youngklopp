@@ -109,7 +109,7 @@ def error_page():
     return 'Error'
 
 def success_page():
-    return redirect("https://cdn.youngklopp.com/test/thanks.html", code=301)
+    return redirect("https://cdn.youngklopp.com/thanks.html", code=301)
 
 def submit (form, debug=False):
     if form is None:
