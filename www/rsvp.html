@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+	<style type="text/css">
+		form {
+			overflow: hidden;
+		}
+		.form-frame {
+			font-family: 'Roboto';
+			background-color: transparent;
+			text-align: center;
+			display: table;
+			width: inherit;
+			height: inherit;
+			margin: .5%;
+			font-size: 16px;
+			font-size: 10vh;
+			color: #024366;
+			overflow: hidden;
+		}
+		.form-element {
+			height: 11.7647vh;
+			display: table-cell;
+			box-sizing: border-box;
+			border: 10px solid transparent;
+		}
+		.input-field {
+			width: 100%;
+			font-family: inherit;
+			font-size: 75%;
+			box-sizing: border-box;
+		}
+		.input-stub {
+			display: table-cell;
+			width: 33.33333333%;
+		}
+		.input-button {
+			width: 50%;
+			height: 10vh;
+			font-family: inherit;
+			font-size: 1em;
+			font-size: 6vh;
+			background-color: #4e858d;
+			border: none;
+			border-radius: 8px;
+			color: #FFFFFF;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function () {
+			var f = document.getElementById("myForm");
+			f.onsubmit = function () {
+			var s = document.getElementById("subbut");
+				s.disabled = true;
+				s.value = "Response sent...";
+			}
+		}
+	</script>
+</head>
+
+<body class="form-frame">
+	<form id="myForm" method="post" action="https://api.youngklopp.com/">
+		<label class="form-element" for="name">Name:</label>
+		<div class="form-element">
+			<input type="text" id="name" name="full_name" placeholder="First and last name" class="input-field" required="true" autofocus/>
+		</div>
+		<div>
+			<label for="address-line1">Mailing address:</label><br>
+			<input type="text" id="address-line1" name="address-line1" placeholder="Address" class="input-field" required="true"/><br>
+			<input type="text" id="address-line2" name="address-line2" placeholder="Apartment, suite, etc. (optional)" class="input-field"/><br>
+			<div class="input-stub">
+			<input type="text" id="address-level2" name="address-level2" placeholder="City" class="input-field" required="true"/>
+			</div>
+			<div class="input-stub">
+			<input type="text" id="address-level1" name="address-level1" placeholder="State" class="input-field" required="true"/>
+			</div>
+			<div class="input-stub">
+			<input type="text" inputmode="numeric" id="postal-code" name="postal-code" placeholder="ZIP Code" class="input-field" required="true"/>
+			</div>
+		</div>
+		<br>
+		<input id="subbut" type="submit" value="Submit" class="input-button"/>
+		<br>
+	</form>
+</body>
+
+</html>
