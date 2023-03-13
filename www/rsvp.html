@@ -4,48 +4,59 @@
 <head>
 	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 	<style type="text/css">
-		form {
+		body {
 			overflow: hidden;
-		}
-		.form-frame {
+			box-sizing: border-box;
+			margin: 0;
 			font-family: 'Roboto';
-			background-color: transparent;
-			text-align: center;
-			display: table;
-			width: inherit;
-			height: inherit;
-			margin: .5%;
 			font-size: 16px;
-			font-size: 10vh;
+			font-size: 5.5vw;
 			color: #024366;
-			overflow: hidden;
+			background-color: transparent;
 		}
-		.form-element {
-			height: 11.7647vh;
-			display: table-cell;
-			box-sizing: border-box;
-			border: 10px solid transparent;
+		div {
+			margin-bottom: calc(100vw / 27);
 		}
-		.input-field {
-			width: 100%;
-			font-family: inherit;
+		.disclaimer {
 			font-size: 75%;
-			box-sizing: border-box;
+			color: red;
+			margin: 0;
 		}
-		.input-stub {
-			display: table-cell;
-			width: 33.33333333%;
+		.option {
+			font-size: 95%;
+			/*border: 10px solid red;*/
+			display: inline-block;
 		}
-		.input-button {
+		label {
+			display:inline-block;
+			vertical-align: center;
+			margin-bottom: 1vw;
+		}
+		input {
+			width: calc(100% - 16px);
+			margin-left: 4px;
+			font-size: 95%;
+			color: #024366;
+		}
+		input[type=radio] {
+			display: inline-block;
+			vertical-align: center;
+			width: 5vw;
+			height: 5vw;
+			margin-right: -.5vw;
+			margin-left: .5vw;
+		}
+		input[type=submit] {
 			width: 50%;
-			height: 10vh;
-			font-family: inherit;
-			font-size: 1em;
-			font-size: 6vh;
+			height: calc(125vw / 9);
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
 			background-color: #4e858d;
 			border: none;
-			border-radius: 8px;
+			border-radius: 1vw;
 			color: #FFFFFF;
+			font-size: 95%;
 		}
 	</style>
 	<script type="text/javascript">
@@ -54,35 +65,34 @@
 			f.onsubmit = function () {
 			var s = document.getElementById("subbut");
 				s.disabled = true;
-				s.value = "Response sent...";
+				s.value = "Sending Info...";
 			}
 		}
 	</script>
 </head>
 
-<body class="form-frame">
+<body>
+	<div><p class="disclaimer">* <i>Required</i></p></div>
 	<form id="myForm" method="post" action="https://api.youngklopp.com/">
-		<label class="form-element" for="name">Name:</label>
-		<div class="form-element">
-			<input type="text" id="name" name="full_name" placeholder="First and last name" class="input-field" required="true" autofocus/>
+		<div>
+			<label for="name">Full name, <i>as stated on invitation</i> <font color=red>*</font></label>
+			<input type="text" id="name" name="full_name" autocomplete="off" placeholder="Full name on invitation envelope" required="true" autofocus/>
 		</div>
 		<div>
-			<label for="address-line1">Mailing address:</label><br>
-			<input type="text" id="address-line1" name="address-line1" placeholder="Address" class="input-field" required="true"/><br>
-			<input type="text" id="address-line2" name="address-line2" placeholder="Apartment, suite, etc. (optional)" class="input-field"/><br>
-			<div class="input-stub">
-			<input type="text" id="address-level2" name="address-level2" placeholder="City" class="input-field" required="true"/>
-			</div>
-			<div class="input-stub">
-			<input type="text" id="address-level1" name="address-level1" placeholder="State" class="input-field" required="true"/>
-			</div>
-			<div class="input-stub">
-			<input type="text" inputmode="numeric" id="postal-code" name="postal-code" placeholder="ZIP Code" class="input-field" required="true"/>
-			</div>
+			<label for="email" class="form-element">Email <font color=red>*</font></label>
+			<p class="disclaimer"> We will send you an email with your response.</p>
+			<input type="email" id="email" name="email" autocomplete="email" placeholder="Your email for RSVP verification" required="true"/>
 		</div>
-		<br>
-		<input id="subbut" type="submit" value="Submit" class="input-button"/>
-		<br>
+		<div>
+			<label for="rsvp">Will you be attending? <font color=red>*</font></label>
+			<br>
+			<input type="radio" id="rsvp_yes" name="rsvp" value="Yes" required="true"/>
+			<label for="rsvp_yes" class="option">Yes, you will see me on the dancefloor!</label>
+			<br>
+			<input type="radio" id="rsvp_no" name="rsvp" value="No" required="true"/>
+			<label for="rsvp_no" class="option">No, I will party from afar!</label>
+		</div>
+		<input id="subbut" type="submit" value="Continue to RSVP" class="form-element"/>
 	</form>
 </body>
 

@@ -1,7 +1,12 @@
 import sys
+import time
+import json
+from hashlib import sha256
 from datetime import datetime
 from copy import deepcopy
 import functions_framework
+from google.cloud import storage
+from google.cloud.storage.blob import Blob
 from googleapiclient.discovery import build
 from flask import redirect
 
@@ -9,36 +14,17 @@ newline = "\n"
 
 _yk_domain = 'youngklopp'
 _yk_workbook = '1VwE6r8kHSUK9n93xpvZyqZ0aK9KEbhSVrOb0WFh87Ww'
-_yk_sheet_id = 644811057
+_yk_sheet_id = 1256412268
 _yk_sheet = 'Young Klopp Interest Form'
 
-_yk_address = [
-    (lambda f : f['address-line1']+newline),
-    (lambda f : f['address-line2']+newline),
-    (lambda f : f['address-level2']+', '),
-    (lambda f : f['address-level1']+' '),
-    (lambda f : f['postal-code'])
-    ]
-
-def _yk_compile_address (form):
-    address = ''
-    for function in _yk_address:
-        try:
-            string = function (form)
-        except:
-            string = ''
-        address += string
-    if not address:
-        return None
-    return address
-
 _yk_data = [
-    (lambda f : datetime.now().strftime('%m/%d/%Y %H:%M:%S')),
-    (lambda f : f['email']),
-    (lambda f : f['full_name']),
-    (lambda f : _yk_compile_address(f)),
-    (lambda f : f['phone']),
-    ]
+        (lambda f : datetime.now().strftime('%m/%d/%Y %H:%M:%S')),
+        (lambda f : f['full_name']),
+        (lambda f : f['email']),
+        (lambda f : f['phone']),
+        (lambda f : f['rsvp']),
+        #(lambda f : f['']),
+        ]
 
 _api_value = {
     'userEnteredValue': {
@@ -105,10 +91,20 @@ def _api_submit (workbook, body):
     service.close()
     return response
 
-def error_page():
+def create_blob (data, blob_path="gs://cdn.youngklopp.com/blob/"):
+    blob_name = sha256(time.time().encode()).hexdigest()
+    s_client = storage.Client()
+    blob = Blob.from_string(blob_path + blob_name)
+    blob.upload_from_string(json.dumps(data), content_type='application/json', client=s_client)
+    return blob_name
+
+def error_page ():
     return 'Error'
 
-def success_page():
+def success_page (blob="ERROR"):
+    return redirect("https://cdn.youngklopp.com/rsvp2.html?id=" + blob, code=301)
+
+def thanks_page ():
     return redirect("https://cdn.youngklopp.com/thanks.html", code=301)
 
 def submit (form, debug=False):
@@ -120,13 +116,15 @@ def submit (form, debug=False):
     body = _api_build_body ([request])
     if not debug:
         response = _api_submit (_yk_workbook, body)
-        response = success_page ()
+    if form['rsvp'] == "Yes":
+        register = create_blob({'full_name': form['full_name']})
+        response = success_page (register)
     else:
-        response = success_page ()
+        response = thanks_page ()
     return response
 
 @functions_framework.http
-def guest (request):
+def rsvp (request):
     req_form = request.form
     req_base = request.base_url
     response = error_page()
