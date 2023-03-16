@@ -26,7 +26,7 @@ def notify_topic (form, topic=None):
         else:
             _yk_topic = 'rsvp-response'
         topic = ('projects/youngklopp/topics/'+_yk_topic).format(
-            project_id=os.environ['GCP_PROJECT']
+            project_id=os.environ['GCP_PROJECT'],
             topic_name=_yk_topic
             )
     message = json.dumps(form).encode('utf-8')
