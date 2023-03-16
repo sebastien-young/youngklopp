@@ -1,0 +1,10 @@
+steps:
+- name: 'docker.io/library/python:3.10'
+  entrypoint: /bin/sh
+  args: [-c, 'pip install -r requirements.txt']
+  dir: 'rsvp_selection'
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['functions', 'deploy', 'rsvp_selection', '--trigger-topic', 'rsvp-selection', '--runtime', 'python310']
+  dir: 'rsvp_selection'
+options:
+  logging: CLOUD_LOGGING_ONLY
