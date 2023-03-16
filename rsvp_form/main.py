@@ -10,8 +10,6 @@ from google.cloud.storage.blob import Blob
 from googleapiclient.discovery import build
 from flask import abort, redirect
 
-newline = "\n"
-
 _yk_domain = 'youngklopp'
 
 def create_blob (data, blob_path="gs://cdn.youngklopp.com/blob/"):
