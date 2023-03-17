@@ -4,6 +4,7 @@ from datetime import datetime
 from copy import deepcopy
 import functions_framework
 from googleapiclient.discovery import build
+from base64 import b64decode
 
 newline = "\n"
 
@@ -99,5 +100,6 @@ def submit (form, debug=False):
 
 @functions_framework.cloud_event
 def rsvp_selection (event):
-    req_form = json.loads(event.data)
+    message = b64decode(event['data']).decode('utf-8')
+    req_form = json.loads(message)
     response = submit (req_form)
